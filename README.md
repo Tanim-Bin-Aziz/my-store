@@ -1,4 +1,4 @@
-# China Import Store
+# My Store
 
 Next.js 15 (App Router) + TypeScript + Tailwind CSS 3, with shadcn-style UI components
 (`components/ui/*`). No extra setup needed.
