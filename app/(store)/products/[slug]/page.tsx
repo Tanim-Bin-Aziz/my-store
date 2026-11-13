@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section aria-label="Related products" className="mt-6">
         <h2 className="mb-4 text-xl font-semibold tracking-tight">You may also like</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] sm:gap-4">
           {related.map((p) => (
             <Link key={p.slug} href={`/products/${p.slug}`} className="overflow-hidden rounded-lg border">
               <ProductImage src={p.image} alt={p.name} iconSize={44} className="aspect-square" />

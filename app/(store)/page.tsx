@@ -53,7 +53,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="container pt-6">
         <div className="flex flex-wrap gap-4">
-          <div className="flex min-w-0 flex-[2_1_560px] flex-wrap items-center gap-6 rounded-2xl border bg-muted p-8">
+          <div className="flex min-w-0 flex-[2_1_560px] flex-wrap items-center gap-6 rounded-2xl border bg-muted p-5 sm:p-8">
             <div className="flex min-w-0 flex-[1_1_300px] flex-col items-start gap-4">
               <Badge className="h-7 px-3">New arrivals just landed</Badge>
               <h1 className="text-[clamp(28px,4vw,40px)] font-bold leading-[1.1] tracking-tight">
@@ -124,7 +124,7 @@ export default function HomePage() {
             View all
           </Link>
         </div>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]">
           {categoryIcons.map(({ name, icon: Icon }) => (
             <Link
               key={name}

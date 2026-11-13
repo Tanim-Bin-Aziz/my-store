@@ -33,7 +33,7 @@ export function FeaturedProducts() {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-4">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] sm:gap-4">
         {shown.map((p) => (
           <ProductCard key={p.slug} product={p} />
         ))}

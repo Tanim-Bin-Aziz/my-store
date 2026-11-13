@@ -63,7 +63,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </div>
 
       <div className="flex flex-wrap items-start gap-6">
-        <aside aria-label="Filters" className="flex min-w-0 max-w-full flex-[1_1_220px] flex-col gap-6">
+        <aside aria-label="Filters" className="order-2 flex min-w-0 max-w-full flex-[1_1_220px] flex-col gap-6 lg:order-none">
           <div className="rounded-xl border p-4">
             <div className="mb-2 font-semibold">Category</div>
             <div className="flex flex-col gap-0.5">
@@ -101,13 +101,13 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
           </form>
         </aside>
 
-        <section aria-label="Products" className="min-w-0 flex-[4_1_560px]">
+        <section aria-label="Products" className="order-1 min-w-0 flex-[4_1_560px] lg:order-none">
           {list.length === 0 ? (
             <div className="rounded-xl border p-10 text-center text-muted-foreground">
               No products found. Try another category or search.
             </div>
           ) : (
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] sm:gap-4">
               {list.map((p) => (
                 <ProductCard key={p.slug} product={p} />
               ))}

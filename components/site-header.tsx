@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Package, Search, ShoppingCart, User } from "lucide-react";
+import { Heart, Search, ShoppingCart, User } from "lucide-react";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart-provider";
 import { SITE_NAME, categories } from "@/lib/products";
@@ -11,42 +12,43 @@ export function SiteHeader() {
 
   return (
     <header className="border-b bg-background">
-      <div className="container flex flex-wrap items-center gap-x-6 gap-y-3 py-3">
-        <Link href="/" className="flex flex-none items-center gap-2.5">
-          <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-primary text-primary-foreground">
-            <Package size={20} />
-          </span>
-          <span className="text-lg font-bold tracking-tight">{SITE_NAME}</span>
-        </Link>
-
-        <form action="/products" className="relative mx-auto min-w-0 max-w-[560px] flex-1 basis-[280px]">
-          <Search size={18} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input
-            type="search"
-            name="q"
-            aria-label="Search products"
-            placeholder="Search products, brands, categories"
-            className="h-11 w-full rounded-md border border-input bg-background pl-10 pr-3.5 text-sm"
-          />
-        </form>
-
-        <div className="flex flex-none items-center gap-1">
-          <Button variant="ghost" size="icon" aria-label="Account">
-            <User size={20} />
-          </Button>
-          <Button variant="ghost" size="icon" aria-label="Wishlist">
-            <Heart size={20} />
-          </Button>
-          <Link
-            href="/cart"
-            className="flex h-11 items-center gap-2 rounded-md border bg-background px-3.5 text-sm font-medium hover:bg-muted"
-          >
-            <ShoppingCart size={20} />
-            <span>Cart</span>
-            <span className="flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-semibold text-primary-foreground">
-              {count}
-            </span>
+      <div className="container py-2.5 sm:py-3">
+        <div className="flex items-center gap-1.5 sm:gap-4">
+          <Link href="/" aria-label={SITE_NAME} className="flex flex-none items-center gap-2.5">
+            <Logo size={44} aria-hidden />
+            <span className="hidden text-lg font-bold tracking-tight sm:inline">{SITE_NAME}</span>
           </Link>
+
+          <form action="/products" role="search" className="relative min-w-0 flex-1 sm:mx-auto sm:max-w-[560px]">
+            <Search size={18} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <input
+              type="search"
+              name="q"
+              aria-label="Search products"
+              placeholder="Search products, brands, categories"
+              className="h-11 w-full min-w-0 rounded-md border border-input bg-background pl-10 pr-3 text-base placeholder:text-muted-foreground sm:text-sm"
+            />
+          </form>
+
+          <div className="flex flex-none items-center">
+            <Button variant="ghost" size="icon" aria-label="Account" className="h-11 w-11">
+              <User size={20} />
+            </Button>
+            <Button variant="ghost" size="icon" aria-label="Wishlist" className="hidden h-11 w-11 sm:inline-flex">
+              <Heart size={20} />
+            </Button>
+            <Link
+              href="/cart"
+              aria-label={`Cart, ${count} items`}
+              className="relative flex h-11 w-11 flex-none items-center justify-center gap-2 rounded-md hover:bg-muted sm:w-auto sm:border sm:px-3.5"
+            >
+              <ShoppingCart size={20} />
+              <span className="hidden text-sm font-medium sm:inline">Cart</span>
+              <span className="absolute -right-0.5 -top-0.5 flex h-[20px] min-w-[20px] items-center justify-center rounded-full border-2 border-background bg-primary px-1 text-[11px] font-semibold text-primary-foreground sm:static sm:h-[22px] sm:min-w-[22px] sm:border-0 sm:px-1.5 sm:text-xs">
+                {count}
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
 
