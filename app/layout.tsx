@@ -12,7 +12,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: { default: SITE_NAME, template: `%s · ${SITE_NAME}` },
-  description: "Quality products imported from China, delivered across Bangladesh.",
+  description: "Handcrafted flowers, preserved blooms, and thoughtful gifts delivered across Bangladesh.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

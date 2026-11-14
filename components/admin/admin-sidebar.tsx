@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ExternalLink, LayoutDashboard, Package, Settings, ShoppingBag, Users } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { SiteName } from "@/components/site-name";
 import { cn } from "@/lib/utils";
 import { SITE_NAME } from "@/lib/products";
 
@@ -23,7 +24,7 @@ export function AdminSidebar() {
       <Link href="/admin" className="flex min-h-11 items-center gap-2.5">
         <Logo size={48} aria-hidden />
         <span className="flex flex-col leading-tight">
-          <span className="text-base font-bold tracking-tight">{SITE_NAME}</span>
+          <SiteName className="text-base font-bold tracking-tight" />
           <span className="text-xs text-muted-foreground">Admin panel</span>
         </span>
       </Link>

@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Heart, Search, ShoppingCart, User } from "lucide-react";
+import { Heart, Search, ShoppingCart } from "lucide-react";
 import { Logo } from "@/components/logo";
+import { SiteName } from "@/components/site-name";
+import { UserMenu } from "@/components/auth/user-menu";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart-provider";
 import { SITE_NAME, categories } from "@/lib/products";
@@ -16,7 +18,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-1.5 sm:gap-4">
           <Link href="/" aria-label={SITE_NAME} className="flex flex-none items-center gap-2.5">
             <Logo size={44} aria-hidden />
-            <span className="hidden text-lg font-bold tracking-tight sm:inline">{SITE_NAME}</span>
+            <SiteName className="hidden text-lg font-bold tracking-tight sm:inline" />
           </Link>
 
           <form action="/products" role="search" className="relative min-w-0 flex-1 sm:mx-auto sm:max-w-[560px]">
@@ -31,9 +33,7 @@ export function SiteHeader() {
           </form>
 
           <div className="flex flex-none items-center">
-            <Button variant="ghost" size="icon" aria-label="Account" className="h-11 w-11">
-              <User size={20} />
-            </Button>
+            <UserMenu />
             <Button variant="ghost" size="icon" aria-label="Wishlist" className="hidden h-11 w-11 sm:inline-flex">
               <Heart size={20} />
             </Button>

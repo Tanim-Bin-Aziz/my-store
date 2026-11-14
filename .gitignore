@@ -1,8 +1,16 @@
 node_modules
 .next
 out
+.env
 .env*.local
+!.env.example
 next-env.d.ts
 *.tsbuildinfo
 .commandcode
 .DS_Store
+
+# Raw local assets — web-served assets live in public/
+/*.webp
+/*.jpg
+/*.jpeg
+/*.png

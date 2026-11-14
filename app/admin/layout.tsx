@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import { Search } from "lucide-react";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { SignOutButton } from "@/components/auth/sign-out-button";
+import { requireAdmin } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Admin",
   robots: { index: false, follow: false },
 };
 
-// TODO: protect /admin (login / middleware) before you deploy.
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const { user, profile } = await requireAdmin();
+  const name = profile?.full_name || user.email || "Admin";
+  const initial = name.charAt(0).toUpperCase();
+
   return (
     <div className="flex min-h-screen flex-wrap items-stretch bg-neutral-50">
       <AdminSidebar />
@@ -25,13 +30,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             />
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-[13px] text-muted-foreground">[Admin name]</span>
+            <span className="hidden text-[13px] text-muted-foreground sm:inline">{name}</span>
             <span
               aria-hidden="true"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-[13px] font-semibold text-primary-foreground"
             >
-              A
+              {initial}
             </span>
+            <SignOutButton />
           </div>
         </header>
 

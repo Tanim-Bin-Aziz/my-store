@@ -42,8 +42,8 @@ const trust = [
 ];
 
 const steps = [
-  { n: "01", title: "Choose what you like", text: "Browse the catalog and add your favourites to the cart." },
-  { n: "02", title: "We import and check", text: "Your order is sourced from China and inspected on arrival." },
+  { n: "01", title: "Choose what you love", text: "Browse preserved blooms, bouquets, and craft gifts in our collection." },
+  { n: "02", title: "We arrange and pack", text: "Each piece is hand-prepared with care and wrapped for safe delivery." },
   { n: "03", title: "Delivered to you", text: "Pay online or on delivery, and track your parcel to your door." },
 ];
 
@@ -57,10 +57,10 @@ export default function HomePage() {
             <div className="flex min-w-0 flex-[1_1_300px] flex-col items-start gap-4">
               <Badge className="h-7 px-3">New arrivals just landed</Badge>
               <h1 className="text-[clamp(28px,4vw,40px)] font-bold leading-[1.1] tracking-tight">
-                Smart finds from China, delivered to your door
+                Handcrafted flowers & gifts, made to delight
               </h1>
               <p className="max-w-[440px] text-base text-neutral-600">
-                Browse our latest imports across electronics, home, fashion and more. Simple ordering, honest prices.
+                Discover preserved blooms, baby&apos;s breath arrangements, and thoughtful craft gifts. Beautiful pieces for every occasion, delivered to your door.
               </p>
               <div className="flex flex-wrap gap-2">
                 <Link href="/products" className={buttonVariants()}>
@@ -72,8 +72,8 @@ export default function HomePage() {
               </div>
             </div>
             <ProductImage
-              alt="Featured product"
-              iconSize={72}
+              src="/baby-breathe.webp"
+              alt="Baby's breath bouquet"
               className="min-h-[240px] min-w-0 flex-[1_1_240px] rounded-xl border bg-background"
             />
           </div>
@@ -160,12 +160,12 @@ export default function HomePage() {
       <section className="container pt-10">
         <div className="flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-primary p-8 text-primary-foreground">
           <div className="min-w-0 flex-[1_1_320px]">
-            <div className="text-[22px] font-bold tracking-tight">Can&apos;t find a product?</div>
-            <div className="mt-1 text-neutral-300">Tell us what you are looking for and we will source it for you.</div>
+            <div className="text-[22px] font-bold tracking-tight">Can&apos;t find the perfect piece?</div>
+            <div className="mt-1 text-neutral-300">Tell us what you have in mind and we&apos;ll craft something special for you.</div>
           </div>
           <Link href="/products" className={cn(buttonVariants({ variant: "light" }))}>
             <Timer size={16} />
-            Request a product
+            Request a custom piece
           </Link>
         </div>
       </section>

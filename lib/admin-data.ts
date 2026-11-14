@@ -50,7 +50,7 @@ export type AdminProduct = {
 };
 
 // Built from the storefront catalog with sample stock numbers.
-const sampleStock = [3, 24, 4, 18, 12, 9, 15, 30, 7, 2, 11, 6];
+const sampleStock = [3, 24, 4, 18, 12, 9, 15, 30, 7, 2, 11, 6, 20, 14, 8, 16, 10];
 const sampleDrafts = new Set(["portable-blender", "travel-backpack"]);
 
 export const adminProducts: AdminProduct[] = products.map((p, i) => ({

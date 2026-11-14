@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteName } from "@/components/site-name";
 import { SITE_NAME } from "@/lib/products";
 
 const linkClass = "flex min-h-8 items-center text-neutral-600 hover:text-foreground";
@@ -9,7 +10,7 @@ export function SiteFooter() {
       <div className="container py-10">
         <div className="flex flex-wrap gap-x-12 gap-y-8">
           <div className="flex min-w-[260px] flex-[2_1_260px] flex-col gap-3">
-            <div className="text-lg font-bold tracking-tight">{SITE_NAME}</div>
+            <div className="text-lg font-bold tracking-tight"><SiteName /></div>
             <p className="max-w-xs text-muted-foreground">
               Quality products imported from China, delivered across Bangladesh.
             </p>
