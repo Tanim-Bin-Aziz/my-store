@@ -27,8 +27,16 @@ export async function updateSession(request: NextRequest) {
   );
 
   // Must run before any other logic: refreshes the session token and writes cookies.
-  const { data } = await supabase.auth.getClaims();
-  const user = data?.claims;
+  // If the backend is unreachable, treat the request as signed-out rather than 500 —
+  // public pages can still render (in degraded mode) instead of hard-failing.
+  let claims: unknown;
+  try {
+    const { data } = await supabase.auth.getClaims();
+    claims = data?.claims;
+  } catch {
+    claims = undefined;
+  }
+  const user = claims as { sub?: string } | undefined;
   const { pathname } = request.nextUrl;
 
   const isProtected = PROTECTED_PREFIXES.some(
