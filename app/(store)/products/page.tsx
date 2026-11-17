@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Gift, Headphones, Home, LayoutGrid, Shirt, Smartphone, Sparkles, Watch, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProductCard } from "@/components/product-card";
@@ -9,6 +9,19 @@ import { categories, products } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 export const metadata = { title: "All products" };
+
+const categoryIcons: Record<string, typeof LayoutGrid> = {
+  Electronics: Smartphone,
+  Audio: Headphones,
+  "Home & Kitchen": Home,
+  Fashion: Shirt,
+  Watches: Watch,
+  "Tools & DIY": Wrench,
+  "Beauty & Care": Sparkles,
+  "Gifts & Toys": Gift,
+};
+
+const iconFor = (category?: string) => (category && categoryIcons[category]) || LayoutGrid;
 
 type SearchParams = {
   category?: string;
@@ -63,42 +76,66 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
       </div>
 
       <div className="flex flex-wrap items-start gap-6">
-        <aside aria-label="Filters" className="order-2 flex min-w-0 max-w-full flex-[1_1_220px] flex-col gap-6 lg:order-none">
-          <div className="rounded-xl border p-4">
-            <div className="mb-2 font-semibold">Category</div>
-            <div className="flex flex-col gap-0.5">
+        <aside aria-label="Filters" className="order-2 flex min-w-0 max-w-full flex-[1_1_220px] flex-col lg:order-none">
+          <div className="rounded-xl bg-muted/60 p-2">
+            <div className="px-2.5 pb-1.5 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Categories
+            </div>
+            <nav aria-label="Product categories" className="flex flex-col gap-0.5">
               {[undefined, ...categories].map((c) => {
                 const active = (sp.category ?? undefined) === c;
+                const Icon = iconFor(c);
                 return (
                   <Link
                     key={c ?? "all"}
                     href={hrefFor(c)}
+                    aria-current={active ? "page" : undefined}
                     className={cn(
-                      "flex min-h-11 items-center justify-between rounded-lg px-3 text-sm",
-                      active ? "bg-muted font-semibold" : "text-neutral-700 hover:bg-muted/60"
+                      "flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm transition-colors",
+                      active
+                        ? "bg-background font-semibold text-foreground shadow-sm ring-1 ring-black/5"
+                        : "text-neutral-700 hover:bg-black/[0.04] hover:text-foreground"
                     )}
                   >
-                    {c ?? "All"}
-                    {active && <Check size={16} strokeWidth={2.5} />}
+                    <Icon size={16} className="flex-none" />
+                    <span className="truncate">{c ?? "All products"}</span>
                   </Link>
                 );
               })}
-            </div>
-          </div>
+            </nav>
 
-          <form className="rounded-xl border p-4">
-            <div className="mb-3 font-semibold">Price (৳)</div>
-            {sp.category && <input type="hidden" name="category" value={sp.category} />}
-            {sp.sort && <input type="hidden" name="sort" value={sp.sort} />}
-            <div className="flex items-center gap-2">
-              <Input name="min" inputMode="numeric" aria-label="Minimum price" placeholder="Min" defaultValue={sp.min} />
-              <span aria-hidden="true" className="text-muted-foreground">–</span>
-              <Input name="max" inputMode="numeric" aria-label="Maximum price" placeholder="Max" defaultValue={sp.max} />
-            </div>
-            <Button type="submit" variant="outline" className="mt-3 w-full">
-              Apply
-            </Button>
-          </form>
+            <div className="my-2 h-px bg-border" />
+
+            <form className="px-2.5 pb-1">
+              <div className="pb-2 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Price (৳)
+              </div>
+              {sp.category && <input type="hidden" name="category" value={sp.category} />}
+              {sp.sort && <input type="hidden" name="sort" value={sp.sort} />}
+              <div className="flex items-center gap-2">
+                <Input
+                  name="min"
+                  inputMode="numeric"
+                  aria-label="Minimum price"
+                  placeholder="Min"
+                  defaultValue={sp.min}
+                  className="h-9 px-2.5"
+                />
+                <span aria-hidden="true" className="text-muted-foreground">–</span>
+                <Input
+                  name="max"
+                  inputMode="numeric"
+                  aria-label="Maximum price"
+                  placeholder="Max"
+                  defaultValue={sp.max}
+                  className="h-9 px-2.5"
+                />
+              </div>
+              <Button type="submit" variant="outline" size="sm" className="mt-2 w-full">
+                Apply
+              </Button>
+            </form>
+          </div>
         </aside>
 
         <section aria-label="Products" className="order-1 min-w-0 flex-[4_1_560px] lg:order-none">

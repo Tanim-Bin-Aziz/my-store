@@ -20,8 +20,8 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex min-w-0 flex-[1_1_240px] flex-col gap-6 border-r bg-background p-4">
-      <Link href="/admin" className="flex min-h-11 items-center gap-2.5">
+    <aside className="flex min-w-0 flex-[1_1_240px] flex-col gap-4 border-r bg-muted/60 p-3">
+      <Link href="/admin" className="flex min-h-11 items-center gap-2.5 rounded-lg px-2">
         <Logo size={48} aria-hidden />
         <span className="flex flex-col leading-tight">
           <SiteName className="text-base font-bold tracking-tight" />
@@ -29,7 +29,10 @@ export function AdminSidebar() {
         </span>
       </Link>
 
-      <nav aria-label="Admin" className="flex flex-col gap-1">
+      <nav aria-label="Admin" className="flex flex-col gap-0.5">
+        <div className="px-2.5 pb-1.5 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Menu
+        </div>
         {items.map(({ href, label, icon: Icon, exact }) => {
           const active = href !== "#" && (exact ? pathname === href : pathname.startsWith(href));
           return (
@@ -38,24 +41,29 @@ export function AdminSidebar() {
               href={href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "flex min-h-11 items-center gap-3 rounded-lg px-3",
-                active ? "bg-muted font-semibold" : "text-neutral-700 hover:bg-muted/60"
+                "flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm transition-colors",
+                active
+                  ? "bg-background font-semibold text-foreground shadow-sm ring-1 ring-black/5"
+                  : "text-neutral-700 hover:bg-black/[0.04] hover:text-foreground"
               )}
             >
-              <Icon size={18} />
+              <Icon size={16} className="flex-none" />
               {label}
             </Link>
           );
         })}
       </nav>
 
-      <Link
-        href="/"
-        className="mt-auto flex min-h-11 items-center gap-3 rounded-lg border px-3 font-medium hover:bg-muted/60"
-      >
-        <ExternalLink size={18} />
-        View store
-      </Link>
+      <div className="mt-auto">
+        <div className="mb-2 h-px bg-border" />
+        <Link
+          href="/"
+          className="flex h-9 items-center gap-2.5 rounded-lg px-2.5 text-sm text-neutral-700 transition-colors hover:bg-black/[0.04] hover:text-foreground"
+        >
+          <ExternalLink size={16} className="flex-none" />
+          View store
+        </Link>
+      </div>
     </aside>
   );
 }
