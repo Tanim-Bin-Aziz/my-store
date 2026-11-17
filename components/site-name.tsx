@@ -1,6 +1,6 @@
 import { SITE_NAME } from "@/lib/products";
 
-const ACCENT = "#FA699E";
+const ACCENT = "#A55CAA";
 const SPLIT = 3;
 
 export function SiteName({ className }: { className?: string }) {
